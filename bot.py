@@ -39,7 +39,11 @@ TELEGRAM_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 GROQ_API_KEY   = os.getenv("GROQ_API_KEY")
 CHANNEL_NAME   = os.getenv("CHANNEL_NAME", "Our Channel")
 
-groq_client = Groq(api_key=GROQ_API_KEY)
+import httpx
+groq_client = Groq(
+    api_key=GROQ_API_KEY,
+    http_client=httpx.Client()
+)
 
 # ── System prompt ──────────────────────────────────────────────────────────────
 SYSTEM_PROMPT = f"""You are a helpful AI assistant managing the Telegram channel "{CHANNEL_NAME}".
