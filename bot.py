@@ -90,8 +90,8 @@ def get_ai_response(user_id: int, user_message: str) -> str:
         history.append({"role": "assistant", "content": reply})
         return reply
     except Exception as e:
-        logger.error(f"Groq API error: {e}")
-        return "Sorry, I'm having trouble connecting right now. Please try again in a moment!"
+        logger.error(f"Groq API error: {type(e).__name__}: {e}")
+        return f"DEBUG ERROR: {type(e).__name__}: {str(e)[:200]}"
 
 
 # ── Command handlers ───────────────────────────────────────────────────────────
